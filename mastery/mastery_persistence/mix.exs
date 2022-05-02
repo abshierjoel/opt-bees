@@ -1,13 +1,12 @@
-defmodule Mastery.MixProject do
+defmodule MasteryPersistence.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :mastery,
+      app: :mastery_persistence,
       version: "0.1.0",
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
-      elixirc_paths: elixirc_paths(Mix.env()),
       deps: deps()
     ]
   end
@@ -16,18 +15,15 @@ defmodule Mastery.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {Mastery.Application, []}
+      mod: {MasteryPersistence.Application, []}
     ]
   end
-
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_), do: ["lib"]
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:earmark, "~> 1.4"},
-      {:mastery_persistence, path: "mastery_persistence"}
+      {:ecto_sql, "~> 3.8"},
+      {:postgrex, "~> 0.16.3"}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]
